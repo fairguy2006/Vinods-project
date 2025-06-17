@@ -1,2 +1,2 @@
-# Vinods-project
+# Vinods python-practice
 shell scripting example project
