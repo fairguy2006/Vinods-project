@@ -1,2 +1,2 @@
 # Vinods python-practice
-shell scripting example project
+Beginner Python Coding Engineer 
