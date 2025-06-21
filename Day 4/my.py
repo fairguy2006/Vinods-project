@@ -14,9 +14,13 @@ for key, value in person.items():
 #Update a Value in the Dictionary
 person['age'] = 31
 print("updated age:" , person["age"])
-person["address"]= { "city" : "New Delhi", "Zip": "560084"} 
+person["address"] = { "city": "New Delhi", "Zip": "560084" }
 for key, value in person.items():
-    print(key + ":", value)
+    if isinstance(value, dict):
+        for subkey, subvalue in value.items():
+            print(subkey.capitalize() + ":", subvalue)
+    else:
+        print(key.capitalize() + ":", value)
     # User's Favourite book and movie
 favorites = {}
 favorites["book"] = input ("what is your favourite book? ") # type: ignore
