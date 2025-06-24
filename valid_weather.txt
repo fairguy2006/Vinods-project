@@ -1,0 +1,12 @@
+Calicut: 🌦   +26°C
+
+kochi: 🌫  +28°C
+
+trivandrum: 🌫  +31°C
+
+xyz: ⛅️  +13°C
+
+bangalore: ⛅️  +23°C
+
+hyderabad: 🌫  +24°C
+
