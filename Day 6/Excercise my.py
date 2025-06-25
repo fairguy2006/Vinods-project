@@ -1,18 +1,32 @@
 import requests
-def get_weather(city):
-    url = f"https://wttr.in{city}?format=3"
+
+def is_valid_city(city):
+    url = f"https://nominatim.openstreetmap.org/search?city={city}&format=json"
     try:
-         response = requests.get(url)
-         if "Unknown location" in response.tet or "Sorry" in response.text:
-            return f"{city}: Invalid city"
-         else:
-             return response.text
+        response = requests.get(url, headers={"user-agent": "Mozilla/5.0"})
+        return len(response.json()) > 0
     except requests.RequestException:
-        return "Network error. Please try again later."
+        print("Network error. Please try again later.")
+        return False
+
+def get_weather(city):
+    try:
+        url = f"https://wttr.in/{city}?format=3"
+        response = requests.get(url)
+        if response.status_code == 200:
+            return response.text
+        else:
+            return "Could not retrieve weather information."
+    except requests.RequestException:
+        return "Network error while fetching weather."
+
 while True:
-        city = input("Enter a city name (or type'exit' to quit): ").strip()
-        if city.lower() == "exit":
-            break
-        if not city:
-            continue
-        print(get_weather(city))
+    city = input("Enter a city name (or type 'exit' to quit): ").strip()
+    if city.lower() == "exit":
+        break
+    if not city:
+        continue
+    if not is_valid_city(city):
+        print("Invalid city name. Please try again.")
+        continue
+    print(get_weather(city))
