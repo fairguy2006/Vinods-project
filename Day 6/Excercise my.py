@@ -5,13 +5,9 @@ def is_valid_city(city):
     try:
         response = requests.get(url, headers={"user-agent": "Mozilla/5.0"})
         data = response.json()
-        city_lower = city.lower()
         for place in data:
             if place.get("class") == "place" and place.get("type") in ["city", "town", "village"]:
-                display_name = place.get("display_name", "").lower()
-                # Check if city is a whole word in display_name
-                if f" {city_lower} " in f" {display_name} ":
-                    return True
+                return True
         return False
     except requests.RequestException:
         print("Network error. Please try again later.")
